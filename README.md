@@ -21,8 +21,8 @@ npx hardhat test
     2、host reveal 时，计算数组里面的每个player的diffNumber，然后对Guess[]按diffNumber进行排序;  
     3、取出Guess[]的前2个player进行diffNumber大小比较，根据情况reward  
 
-## Explain the reason of having both nonceHash and nonceNumHash in the smart contract. Can any of these two be omitted and why?  
-    不能去掉nonceHash，因为玩家可以暴力搜索数字 1 到 10 以找到正确的散列
+## Explain the reason of having both nonceHash and nonceNumHash in the smart contract. Can any of these two be omitted and why?
+不能去掉nonceHash，因为玩家可以暴力搜索数字 1 到 10 以找到正确的散列
 ## Try to find out any security loopholes in the above design and propose an improved solution.
         
 ### A loophole is a vulnerability that allows an attacker to ALWAY dishonestly win the game by having some specific actions, or any otheractions, that can break the game rules.
