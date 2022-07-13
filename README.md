@@ -22,7 +22,9 @@ npx hardhat test
     3、取出Guess[]的前2个player进行diffNumber大小比较，根据情况reward
 
 ## Explain the reason of having both nonceHash and nonceNumHash in the smart contract. Can any of these two be omitted and why?
-    不能去掉nonceHash，因为玩家可以暴力搜索数字 0 到 1000 找到正确的numbeHash
+
+ 不能去掉noncehash
+ 
 ## Try to find out any security loopholes in the above design and propose an improved solution.
         
 ### A loophole is a vulnerability that allows an attacker to ALWAY dishonestly win the game by having some specific actions, or any otheractions, that can break the game rules.
