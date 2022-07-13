@@ -40,5 +40,6 @@ MultPlayerGuessnumber test :
 
 <img width="1722" alt="截屏2022-07-13 17 47 04" src="https://user-images.githubusercontent.com/104058212/178704835-50796b8e-74cc-4e67-bfd5-f18874588123.png">
 
-2、目前的随机数字都是host事先生成好的，会存在作弊的风险，可以在竞猜结束后，reveal开奖的时候，随机生成。
+2、目前的随机数字都是host事先生成好的，会存在作弊的风险，可以在竞猜结束后，reveal开奖的时候，随机生成。  
+
 3、host进行reveal开奖的时候，如果player是多人的话，会存在gas费成本的问题，如果要player自己去withdraw，则这部分gas费是由player承担了。
