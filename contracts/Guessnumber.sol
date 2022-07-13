@@ -5,13 +5,11 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 
 contract Guessnumber {
-
-    event guessEvent(address indexed player,uint16 number);
+    event guessEvent(address indexed player, uint16 number);
 
     event revealEvent(bytes32 indexed _nonce, uint16 _number);
 
     event playerDiffNumber(address indexed player, uint16 diffNumber);
-
 
     bytes32 nonceHash;
 
@@ -33,7 +31,6 @@ contract Guessnumber {
         address player;
         uint16 guessNumber;
     }
-
 
     Guess[] public guessPlayer;
 
@@ -60,35 +57,35 @@ contract Guessnumber {
     }
 
     function guess(uint16 _number) public payable sameBet {
-        
         require(state != State.GAME_OVER, "The game has already concluded");
-        require(state == State.WAITING_GUESS, "The game state must is waiting guess");
+        require(
+            state == State.WAITING_GUESS,
+            "The game state must is waiting guess"
+        );
         require(
             _number >= 0 && _number < 1000,
             "The Player inputs an invalid number"
         );
         require(
-             guessPlayer.length>=0 && guessPlayer.length < 2,
+            guessPlayer.length >= 0 && guessPlayer.length < 2,
             "This game only supports up to 2 players"
         );
         for (uint256 i = 0; i < guessPlayer.length; i++) {
-            if(guessPlayer[i].guessNumber == _number){
+            if (guessPlayer[i].guessNumber == _number) {
                 revert("The number has been guessed by another Player");
             }
-            if(guessPlayer[i].player == msg.sender){
+            if (guessPlayer[i].player == msg.sender) {
                 revert("You has already submitted a guessing");
             }
         }
-        Guess memory newGuess = Guess(msg.sender,_number);
+        Guess memory newGuess = Guess(msg.sender, _number);
         guessPlayer.push(newGuess);
         if (guessPlayer.length == 2) {
             state = State.WAITING_REVEAL;
         }
-        
+
         emit guessEvent(msg.sender, _number);
     }
-
-
 
     function reveal(bytes32 _nonce, uint16 _number) public onlyOwner {
         require(
@@ -96,18 +93,23 @@ contract Guessnumber {
             "The current game state does not support reveal"
         );
         require(keccak256(abi.encode(_nonce)) == nonceHash, "invalid nonce");
-        require(keccak256(abi.encode(_nonce,_number)) == nonceNumHash, "invalid number");
+        require(
+            keccak256(abi.encode(_nonce, _number)) == nonceNumHash,
+            "invalid number"
+        );
 
         if (_number >= 0 && _number < 1000) {
             uint16 player1DiffNumber = getDiffNumber(
-                _number,guessPlayer[0].guessNumber
+                _number,
+                guessPlayer[0].guessNumber
             );
             uint16 player2DiffNumber = getDiffNumber(
-                _number,guessPlayer[1].guessNumber
+                _number,
+                guessPlayer[1].guessNumber
             );
 
-            emit playerDiffNumber(guessPlayer[0].player,player1DiffNumber);
-            emit playerDiffNumber(guessPlayer[1].player,player1DiffNumber);
+            emit playerDiffNumber(guessPlayer[0].player, player1DiffNumber);
+            emit playerDiffNumber(guessPlayer[1].player, player1DiffNumber);
 
             if (player1DiffNumber == player2DiffNumber) {
                 reaward();
@@ -131,8 +133,14 @@ contract Guessnumber {
         }
     }
 
-    function getDiffNumber(uint16 _number,uint16 guessNumber) pure internal returns (uint16) {
-        return guessNumber >= _number ? guessNumber - _number : _number - guessNumber;
+    function getDiffNumber(uint16 _number, uint16 guessNumber)
+        internal
+        pure
+        returns (uint16)
+    {
+        return
+            guessNumber >= _number
+                ? guessNumber - _number
+                : _number - guessNumber;
     }
-
 }

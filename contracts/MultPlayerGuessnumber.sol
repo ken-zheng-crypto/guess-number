@@ -111,10 +111,10 @@ contract MultPlayerGuessnumber {
             setGuessPlayerDiffNumber(_number);
             sortByDiffNumber();
 
-            emit playerDiffNumber(guessPlayer[0].player, guessPlayer[0].diffNumber);
-            emit playerDiffNumber(guessPlayer[1].player, guessPlayer[1].diffNumber);
+            emit playerDiffNumber(guessPlayer[guessPlayer.length-1].player, guessPlayer[guessPlayer.length-1].diffNumber);
+            emit playerDiffNumber(guessPlayer[guessPlayer.length].player, guessPlayer[guessPlayer.length].diffNumber);
 
-            if (guessPlayer[0].diffNumber == guessPlayer[1].diffNumber) {
+            if (guessPlayer[guessPlayer.length].diffNumber == guessPlayer[guessPlayer.length-1].diffNumber) {
                 reward(2);
             } else {
                 reward(1);
