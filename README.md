@@ -14,8 +14,9 @@ npx hardhat test
 
 ## Customized Player Numbers: Allow the Host to specify the number of Players upon deployment.
 
- pls view code : /contracts/MultPlayerGuessnumber.sol
- pls view test code : /test/MultPlayerGuessnumber.js
+pls view code : /contracts/MultPlayerGuessnumber.sol  
+
+pls view test code : /test/MultPlayerGuessnumber.js  
 
  ideas ：  
     1、定义一个Guess[],Guess是一个struct，包括 player address 、guessNumber、 diffNumber;  
