@@ -33,3 +33,8 @@ MultPlayerGuessnumber test :
 ## Try to find out any security loopholes in the above design and propose an improved solution.
         
 ### A loophole is a vulnerability that allows an attacker to ALWAY dishonestly win the game by having some specific actions, or any otheractions, that can break the game rules.
+
+    设计存在的漏洞如下：
+      1、如果player address 是一个Contract address, 在host进行reval的时候，需要对多个player进行transfer，如果出现一个失败，则所有的player都无法得到奖励；建议提供withdraw()方法，让每个player去领取自己的奖励
+        （参考https://www.bookstack.cn/read/ethereum_book-zh/spilt.8.272b82cb56a522db.md）
+
