@@ -16,11 +16,9 @@ npx hardhat test
 
  pls view code : /contracts/MultPlayerGuessnumber.sol
 
- ideas ： 
+ ideas ：  
     1、定义一个Guess[],Guess是一个struct，包括 player address 、guessNumber、 diffNumber;  
-
-    2、host reveal 时，计算数组里面的每个player的diffNumber，然后对Guess[]按diffNumber进行排序；  
-    
+    2、host reveal 时，计算数组里面的每个player的diffNumber，然后对Guess[]按diffNumber进行排序;  
     3、取出Guess[]的前2个player进行diffNumber大小比较，根据情况reward  
 
 ## Explain the reason of having both nonceHash and nonceNumHash in the smart contract. Can any of these two be omitted and why?
