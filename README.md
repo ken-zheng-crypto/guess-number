@@ -23,7 +23,7 @@ npx hardhat test
 
 ## Explain the reason of having both nonceHash and nonceNumHash in the smart contract. Can any of these two be omitted and why?
 
- 不能去掉noncehash
+ 不能去掉noncehash，因为玩家可以暴力计算0-1000直接的hash,很容易被套利
  
 ## Try to find out any security loopholes in the above design and propose an improved solution.
         
