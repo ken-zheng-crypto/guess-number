@@ -111,10 +111,10 @@ contract MultPlayerGuessnumber {
             setGuessPlayerDiffNumber(_number);
             sortByDiffNumber();
 
-            emit playerDiffNumber(guessPlayer[guessPlayer.length-1].player, guessPlayer[guessPlayer.length-1].diffNumber);
-            emit playerDiffNumber(guessPlayer[guessPlayer.length-2].player, guessPlayer[guessPlayer.length-2].diffNumber);
+            emit playerDiffNumber(guessPlayer[0].player, guessPlayer[0].diffNumber);
+            emit playerDiffNumber(guessPlayer[1].player, guessPlayer[1].diffNumber);
 
-            if (guessPlayer[guessPlayer.length-1].diffNumber == guessPlayer[guessPlayer.length-2].diffNumber) {
+            if (guessPlayer[0].diffNumber == guessPlayer[1].diffNumber) {
                 reward(2);
             } else {
                 reward(1);
@@ -128,7 +128,7 @@ contract MultPlayerGuessnumber {
 
 
 
-    function setGuessPlayerDiffNumber(uint16 _number) internal {
+    function setGuessPlayerDiffNumber(uint16 _number) internal  {
         for (uint256 i = 0; i < guessPlayer.length; i++) {
             guessPlayer[i].diffNumber = getDiffNumber(
                 _number,
@@ -150,7 +150,7 @@ contract MultPlayerGuessnumber {
 
 
     function reward(uint winnePeopleNumber) internal {
-        for (uint256 i = guessPlayer.length-1; i >=guessPlayer.length - winnePeopleNumber; i--) {
+        for (uint16 i = 0; i < winnePeopleNumber; i++) {
             payable(guessPlayer[i].player).transfer((bet * (totalPeople+1)) / winnePeopleNumber);
         }
     }
