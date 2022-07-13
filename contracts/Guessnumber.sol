@@ -110,7 +110,7 @@ contract Guessnumber {
             emit playerDiffNumber(guessPlayer[1].player,player1DiffNumber);
 
             if (player1DiffNumber == player2DiffNumber) {
-                averageReward();
+                reaward();
             } else {
                 uint8 winnerIndex = 0;
                 if (player1DiffNumber > player2DiffNumber) {
@@ -119,13 +119,13 @@ contract Guessnumber {
                 payable(guessPlayer[winnerIndex].player).transfer(bet * 3);
             }
         } else {
-            averageReward();
+            reaward();
         }
 
         emit revealEvent(_nonce, _number);
     }
 
-    function averageReward() internal {
+    function reaward() internal {
         for (uint16 i = 0; i < guessPlayer.length; i++) {
             payable(guessPlayer[i].player).transfer((bet * 3) / 2);
         }
